@@ -58,10 +58,10 @@ struct CoinModel: Identifiable, Codable {
     let athDate: String?
     let atl, atlChangePercentage: Double?
     let atlDate: String?
-    let sparkLineIn7D: SparklineIn7D?
-//    let roi: NSNull?
     let lastUpdated: String?
-    let currenHoldings: Double?
+    let sparklineIn7D: SparklineIn7D?
+//    let roi: NSNull?
+    let currentHoldings: Double?
     
     enum CodingKeys: String, CodingKey {
         case id, symbol, name, image
@@ -85,17 +85,17 @@ struct CoinModel: Identifiable, Codable {
         case atl
         case atlChangePercentage = "atl_change_percentage"
         case atlDate = "atl_date"
-        case sparkLineIn7D = "sparkline_in_7d"
         case lastUpdated = "last_updated"
-        case currenHoldings
+        case sparklineIn7D = "sparkline_in_7d"
+        case currentHoldings
     }
     
     func updateHoldings(amount: Double) -> CoinModel {
-        return CoinModel(id: id, symbol: symbol, name: name, image: image, currentPrice: currentPrice, marketCap: marketCap, marketCapRank: marketCapRank, fullyDilutedValuation: fullyDilutedValuation, totalVolume: totalVolume, high24H: high24H, low24H: low24H, priceChange24H: priceChange24H, priceChangePercentage24H: priceChangePercentage24H, marketCapChange24H: marketCapChange24H, marketCapChangePercentage24H: marketCapChangePercentage24H, circulatingSupply: circulatingSupply, totalSupply: totalSupply, maxSupply: maxSupply, ath: ath, athChangePercentage: athChangePercentage, athDate: athDate, atl: atl, atlChangePercentage: athChangePercentage, atlDate: atlDate, sparkLineIn7D: sparkLineIn7D, lastUpdated: lastUpdated, currenHoldings: amount)
+        return CoinModel(id: id, symbol: symbol, name: name, image: image, currentPrice: currentPrice, marketCap: marketCap, marketCapRank: marketCapRank, fullyDilutedValuation: fullyDilutedValuation, totalVolume: totalVolume, high24H: high24H, low24H: low24H, priceChange24H: priceChange24H, priceChangePercentage24H: priceChangePercentage24H, marketCapChange24H: marketCapChange24H, marketCapChangePercentage24H: marketCapChangePercentage24H, circulatingSupply: circulatingSupply, totalSupply: totalSupply, maxSupply: maxSupply, ath: ath, athChangePercentage: athChangePercentage, athDate: athDate, atl: atl, atlChangePercentage: athChangePercentage, atlDate: atlDate, lastUpdated: lastUpdated, sparklineIn7D: sparklineIn7D,  currentHoldings: amount)
     }
     
     var currentHoldingsValue: Double {
-        return (currenHoldings ?? 0) * currentPrice
+        return (currentHoldings ?? 0) * currentPrice
     }
     
     var rank: Int {
